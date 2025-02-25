@@ -1,0 +1,14 @@
+Origem,Destino,Peso
+BS,Alexandria,10
+BS,Catole,24
+Alexandria,SC,14
+Alexandria,Patu,70
+Catole,PDF,80
+Catole,Patu,60
+PDF,Oeste,12
+PDF,Patu,75
+Marcelino,TN,25
+Marcelino,PDF,30
+Patu,Alexandria,70
+Patu,PDF,75
+SC,Oeste,20
