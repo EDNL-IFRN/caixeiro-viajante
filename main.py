@@ -1,6 +1,6 @@
 import csv
 from model.graph import Graph
-from functions.dfs import dfs_path
+from functions.dfs import find_shortest_path
 
 def add_edges(file_path, graph: Graph):
     with open(file_path, 'r') as file:
@@ -19,19 +19,31 @@ def get_vertices(file_path):
             vertices.add(row[1])
     return list(vertices)
 
-def main ():
+def main():
     file_path = 'docs/edges.csv'
     vertices = get_vertices(file_path)
     graph = Graph(vertices)
     add_edges(file_path, graph)
     graph.print_graph()
-    start = input('Enter the start vertex: ')
-    end = input('Enter the end vertex: ')
-    if(start not in vertices or end not in vertices):
-        print('Invalid vertices')
-        print('Vertices: ', vertices)
+    
+    start = input('Digite a cidade inicial: ')
+    if start not in vertices:
+        print('Cidade inicial inválida')
+        print('Cidades disponíveis:', vertices)
         return
-    path, cost = dfs_path(graph, start, end)
-    print('Path: ', path)   
-    print('Cost: ', cost)
-main()
+    
+    end = input('Digite a cidade final: ')
+    if end not in vertices:
+        print('Cidade final inválida')
+        print('Cidades disponíveis:', vertices)
+        return
+    
+    path, cost = find_shortest_path(graph, start, end)
+    if not path:
+        print('Não foi possível encontrar um caminho entre as cidades')
+    else:
+        print('Menor caminho encontrado:', ' -> '.join(path))
+        print('Custo total:', cost)
+
+if __name__ == '__main__':
+    main()
